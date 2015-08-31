@@ -1,9 +1,11 @@
 require 'sidekiq/debounce/version'
 require 'sidekiq/api'
+require 'sidekiq/logging'
 
 module Sidekiq
   class Debounce
     def call(worker, msg, _queue, redis_pool)
+      Sidekiq::Logging.logger.info { "help me" }
       @worker = worker.is_a?(String) ? worker.constantize : worker
       @msg = msg
 
